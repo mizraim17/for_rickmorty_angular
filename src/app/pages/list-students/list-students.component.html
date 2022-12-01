@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-4 list-students" *ngFor="let student of array_students ">
+
+
+    <div class="card" style="width: 18rem;">
+      <img src="{{student.imagen}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{student.nombre}} {{student.apellido}}</h5>
+        <span>Edad: </span>{{student.edad}} <br>
+        <span>Sexo: </span>{{student.sexo}} <br>
+        <span>Calificación</span> {{student.calificacion|number: '1.0-0'}} <br>
+        <!-- <span [ngClass]="student.calificacion>7 ? 'col-aprobado' : 'col-reprobado'">
+      pasaste la materia
+    </span> -->
+
+        <span [ngClass]="student.calificacion>7 ? 'col-aprobado':'col-reprobado'"
+          *ngIf=" student.calificacion>7;else elseBlock ">
+          pasaste la materia
+        </span>
+
+        <ng-template #elseBlock>
+
+          <span [ngClass]="student.calificacion>7 ? 'col-aprobado' : 'col-reprobado'">
+            Lo siento reprobaste la materia
+          </span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
